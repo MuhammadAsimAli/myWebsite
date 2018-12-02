@@ -131,12 +131,34 @@ function saveMessages(Fuel, Price, DSalary, Total){
 // })
 //validation form of driver registration profile
 function driverRegistration(){
-    var names = document.getElementById('Name');
-    if(names.value.length === 0){
+    var correct_way = /^[A-Za-z]+$/;
+    var names = document.getElementById('Name').value;
+    if(names ===  ""){
         alert("Please enter driver name");
         names.focus();
         return false;
     }
+    if(names.length<3){
+        document.getElementById("Name");
+        alert("User Name must contain 3 char");
+        return false;
+    }
+    if(names.length > 20){
+        document.getElementById("Name");
+        alert("UserName must be less than 20 char");
+        return false;
+    }
+    if(names.match(correct_way))
+        true;
+        else{
+         document.getElementById("Name");
+         alert("Only character is allowed");
+        return false;
+        }
+        // alert("UserName must contain 3 char");
+        // names.focus();
+        // return false;
+    
      var  DAges = document.getElementById('DriverAge');
         if(DAges.value.length === 0){
             alert("Please enter driver Age");
@@ -144,22 +166,21 @@ function driverRegistration(){
             return false;
     }
 
-    var addressIslegal = true;
+    var addressIsLegal = true;
     var Demail = document.getElementById('Email').value;
     if(Demail.indexOf(" ") !== -1 ){
-        addressIslegal = false;
+        addressIsLegal = false;
     }
-    else if(Demail.indexOf("@") < 1 || Demail.indexOf("@") > Demail.length - 5){
-        addressIslegal = false;
+     if(Demail.indexOf("@") < 1 || Demail.indexOf("@") > Demail.length - 5){
+        addressIsLegal = false;
     }
-    else if(Demail.indexOf(".") - Demail.indexOf("@") < 2 || Demail.indexOf(".") > Demail.length - 3){
-        addressIslegal = false;
+     if(Demail.indexOf(".") - Demail.indexOf("@") < 2 || Demail.indexOf(".") > Demail.length - 3){
+        addressIsLegal = false;
     }
-    else if(addressIsLegal === false){
+    if (addressIsLegal === false){
         alert("Please correct email address");
         return false;
     }
-
     var phones = document.getElementById('Phone');
     if(phones.value.length === 0){
         alert("Please enter phone number");
@@ -219,3 +240,4 @@ function checkAllfields(){
         return false;
     }
 }
+
